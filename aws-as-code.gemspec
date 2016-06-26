@@ -1,26 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'aws/as/code/version'
+require 'aws_as_code/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "aws-as-code"
-  spec.version       = Aws::As::Code::VERSION
+  spec.name          = "aws_as_code"
+  spec.version       = AwsAsCode::VERSION
   spec.authors       = ["Konstantin Burnaev"]
   spec.email         = ["kbourn@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Provides a way to track your AWS infrastructure as a code in your version control system.}
+  spec.homepage      = "https://github.com/bkon/aws-as-code"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
