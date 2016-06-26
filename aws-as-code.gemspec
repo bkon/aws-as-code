@@ -1,7 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'aws_as_code/version'
+require "aws_as_code/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "aws_as_code"
@@ -9,11 +10,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Konstantin Burnaev"]
   spec.email         = ["kbourn@gmail.com"]
 
-  spec.summary       = %q{Provides a way to track your AWS infrastructure as a code in your version control system.}
+  spec.summary       = <<EOF
+Provides a way to track your AWS infrastructure as a code in your version control system.
+EOF
+
   spec.homepage      = "https://github.com/bkon/aws-as-code"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = `git ls-files -z`
+                       .split("\x0")
+                       .reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
@@ -21,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 0.41"
 end

@@ -1,0 +1,11 @@
+AllCops:
+  Include:
+  - "**/*.gemspec"
+  - "**/Gemfile"
+  Exclude:
+  - "vendor/**/*"
+  - "spec/**/*"
+  - "features/**/*"
+  - "db/schema.rb"
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
