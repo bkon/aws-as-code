@@ -29,8 +29,10 @@ EOF
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "cucumber", "~> 2.4"
   spec.add_development_dependency "rubocop", "~> 0.41"
-  spec.add_development_dependency "guard-rspec"
-  spec.add_development_dependency "guard-rubocop"
+  spec.add_development_dependency "guard-rspec", "~> 4.7"
+  spec.add_development_dependency "guard-rubocop", "~> 1.2"
+  spec.add_development_dependency "guard-cucumber", "~> 2.1"
   spec.add_development_dependency "codecov"
 end
