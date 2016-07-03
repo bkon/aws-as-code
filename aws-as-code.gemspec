@@ -32,4 +32,5 @@ EOF
   spec.add_development_dependency "rubocop", "~> 0.41"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "guard-rubocop"
+  spec.add_development_dependency "codecov"
 end
