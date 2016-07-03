@@ -25,6 +25,7 @@ EOF
   spec.require_paths = ["lib"]
 
   spec.add_dependency "cfndsl", "~> 0.9"
+  spec.add_dependency "thor", "~> 0.19"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
