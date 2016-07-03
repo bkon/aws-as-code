@@ -10,3 +10,4 @@ test:
   override:
     - bundle exec rubocop
     - bundle exec rspec
+    - bundle exec cucumber
