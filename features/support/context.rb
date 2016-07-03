@@ -7,8 +7,8 @@ require "tmpdir"
 class FeatureContext
   include Singleton
 
-  attr_reader :input_dir
-  attr_reader :output_dir
+  attr_reader :ruby_dir
+  attr_reader :json_dir
 
   def initialize
     reset
@@ -17,27 +17,27 @@ class FeatureContext
   def reset
     dispose
 
-    @input_dir = Dir.mktmpdir
-    @output_dir = Dir.mktmpdir
+    @ruby_dir = Dir.mktmpdir
+    @json_dir = Dir.mktmpdir
   end
 
   def dispose
-    dispose_of_input_dir
-    dispose_of_output_dir
+    dispose_of_ruby_dir
+    dispose_of_json_dir
   end
 
   private
 
-  def dispose_of_input_dir
-    return unless @input_dir
-    FileUtils.remove_entry_secure @input_dir
-    @input_dir = nil
+  def dispose_of_ruby_dir
+    return unless @ruby_dir
+    FileUtils.remove_entry_secure @ruby_dir
+    @ruby_dir = nil
   end
 
-  def dispose_of_output_dir
-    return unless @output_dir
-    FileUtils.remove_entry_secure @output_dir
-    @output_dir = nil
+  def dispose_of_json_dir
+    return unless @json_dir
+    FileUtils.remove_entry_secure @json_dir
+    @json_dir = nil
   end
 end
 

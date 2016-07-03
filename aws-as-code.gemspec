@@ -26,6 +26,8 @@ EOF
 
   spec.add_dependency "cfndsl", "~> 0.9"
   spec.add_dependency "thor", "~> 0.19"
+  spec.add_dependency "term-ansicolor", "~> 1.3.2"
+  spec.add_dependency "aws-sdk", "~> 2.5.11"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"

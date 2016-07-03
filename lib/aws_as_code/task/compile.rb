@@ -20,7 +20,7 @@ module AwsAsCode
 
       def compile_single_file(filename)
         output_filename = File.basename(filename, ".rb") + ".json"
-        output_pathname = File.join config.output_directory, output_filename
+        output_pathname = File.join config.json_dir, output_filename
 
         cfn = CfnDsl.eval_file_with_extras(
           filename,
@@ -32,7 +32,7 @@ module AwsAsCode
       end
 
       def input_files
-        Dir.glob(File.join(config.input_directory, "**/*.rb"))
+        Dir.glob(File.join(config.ruby_dir, "**/*.rb"))
       end
     end
   end
