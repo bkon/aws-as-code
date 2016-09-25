@@ -22,7 +22,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+bundle exec aws-as-code create \
+       --ruby-dir=cfn \
+       --json-dir=cfn-compiled \
+       --bucket=my-cfn-bucket \
+       --template=environment \
+       --stack=master
+```
 
 ## Development
 
