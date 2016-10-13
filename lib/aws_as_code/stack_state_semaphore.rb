@@ -15,7 +15,9 @@ module AwsAsCode
     end
 
     def wait_for_stack_availability(stack)
-      stack.wait_until(max_attempts: 360, delay: 10) do |s|
+      # Note that stack can have old state cached, hence explicit
+      # .reload here
+      stack.reload.wait_until(max_attempts: 360, delay: 10) do |s|
         if in_progress? s
           log_waiting s
           false

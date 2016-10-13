@@ -12,6 +12,7 @@ CloudFormation do
   end
 end
     """
+    And I have default configuration files in my config dir
 
     When I execute the compilation command in the shell
     Then I should have a CloudFormation template named "test.json" in the output dir:

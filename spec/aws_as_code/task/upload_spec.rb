@@ -5,7 +5,8 @@ RSpec.describe AwsAsCode::Task::Upload do
   let(:config) do
     OpenStruct.new json_dir: "/home/user/cfn-compiled",
                    stack: "staging",
-                   bucket: "test-bucket"
+                   bucket: "test-bucket",
+                   version: "VERSION"
   end
 
   let(:instance) { described_class.new config }
@@ -60,7 +61,7 @@ RSpec.describe AwsAsCode::Task::Upload do
     it "users a relative path and stack name as a name for the new S3 object" do
       expect(instance)
         .to receive_message_chain(:bucket, :object)
-        .with("staging/subdir/file.json")
+        .with("staging/VERSION/subdir/file.json")
 
       action
     end

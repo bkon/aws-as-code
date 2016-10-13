@@ -21,7 +21,8 @@ module AwsAsCode
 
       def template_object
         bucket = s3.bucket config.bucket
-        bucket.object "#{config.stack}/#{config.template}.json"
+        prefix = "#{config.stack}/#{config.version}"
+        bucket.object "#{prefix}/#{config.template}.json"
       end
     end
   end

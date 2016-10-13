@@ -30,7 +30,11 @@ module AwsAsCode
               .relative_path_from(config_path)
               .to_s
 
-        [config.stack, key].join("/")
+        [
+          config.stack,
+          config.version,
+          key
+        ].join("/")
       end
 
       def input_files

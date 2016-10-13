@@ -2,7 +2,12 @@ require "ostruct"
 
 RSpec.describe AwsAsCode::Task::Update do
   let(:config) do
-    OpenStruct.new stack: "test-stack"
+    OpenStruct.new stack: "test-stack",
+                   stack_params: {
+                     removed: "",
+                     new: "NEW",
+                     updated: "UPDATED"
+                   }
   end
 
   let(:instance) do
@@ -22,11 +27,27 @@ RSpec.describe AwsAsCode::Task::Update do
   end
 
   let(:stack) do
-    double "Stack"
+    double "Stack",
+           parameters: [
+             OpenStruct.new(parameter_key: "removed",
+                            parameter_value: "1"),
+             OpenStruct.new(parameter_key: "updated",
+                            parameter_value: "2"),
+             OpenStruct.new(parameter_key: "ignored",
+                            parameter_value: "3")
+           ]
   end
 
   describe "#execute" do
     subject(:action) { instance.execute }
+
+    let(:expected_parameters) do
+      [
+        { parameter_key: "ignored", use_previous_value: true },
+        { parameter_key: "updated", parameter_value: "UPDATED" },
+        { parameter_key: "new", parameter_value: "NEW" }
+      ]
+    end
 
     before do
       allow(instance).to receive(:cloud_formation).and_return cf
@@ -43,6 +64,13 @@ RSpec.describe AwsAsCode::Task::Update do
 
     it "waits for stack status to allow modifications" do
       expect(semaphore).to receive(:wait).with(stack)
+      action
+    end
+
+    it "passes a correct list of parameters" do
+      expect(cf)
+        .to receive(:update_stack)
+        .with(hash_including parameters: match_array(expected_parameters))
       action
     end
   end

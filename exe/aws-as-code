@@ -14,11 +14,14 @@ DEFAULT_TEMPLATE = "environment".freeze
 
 # Main CLI application for aws-as-code gem
 class AwsAsCodeCli < Thor
+  class_option :config_dir, default: DEFAULT_RUBY_DIR
   class_option :ruby_dir, default: DEFAULT_RUBY_DIR
   class_option :json_dir, default: DEFAULT_JSON_DIR
   class_option :bucket, required: true
   class_option :template, default: DEFAULT_TEMPLATE
   class_option :stack, default: DEFAULT_STACK
+  class_option :stack_params, type: :hash, default: Hash[]
+  class_option :version, required: true
 
   desc "compile", "compile cfndsl to CF JSON"
   def compile
