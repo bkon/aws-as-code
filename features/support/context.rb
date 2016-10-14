@@ -9,6 +9,7 @@ class FeatureContext
 
   attr_reader :ruby_dir
   attr_reader :json_dir
+  attr_reader :config_dir
 
   def initialize
     reset
@@ -19,11 +20,13 @@ class FeatureContext
 
     @ruby_dir = Dir.mktmpdir
     @json_dir = Dir.mktmpdir
+    @config_dir = Dir.mktmpdir
   end
 
   def dispose
     dispose_of_ruby_dir
     dispose_of_json_dir
+    dispose_of_config_dir
   end
 
   private
@@ -38,6 +41,12 @@ class FeatureContext
     return unless @json_dir
     FileUtils.remove_entry_secure @json_dir
     @json_dir = nil
+  end
+
+  def dispose_of_config_dir
+    return unless @config_dir
+    FileUtils.remove_entry_secure @config_dir
+    @config_dir = nil
   end
 end
 

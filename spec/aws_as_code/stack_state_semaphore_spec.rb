@@ -19,6 +19,10 @@ RSpec.describe AwsAsCode::StackStateSemaphore do
            stack_status: "CREATE_COMPLETE"
   end
 
+  before do
+    allow(stack).to receive(:reload).and_return stack
+  end
+
   describe "#wait" do
     before do
       allow(instance).to receive(:wait_for_stack_availability)

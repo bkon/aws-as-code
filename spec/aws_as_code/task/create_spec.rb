@@ -3,7 +3,11 @@ require "ostruct"
 RSpec.describe AwsAsCode::Task::Create do
   let(:config) do
     OpenStruct.new stack: "test-stack",
-                   template: "env"
+                   template: "env",
+                   version: "VERSION",
+                   stack_params: {
+                     DBPassword: "XXX"
+                   }
   end
 
   let(:instance) do
@@ -37,7 +41,16 @@ RSpec.describe AwsAsCode::Task::Create do
     end
 
     it "attempts to create the stack" do
-      expect(cf).to receive :create_stack
+      expect(cf)
+        .to receive(:create_stack)
+        .with(stack_name: "test-stack",
+              template_url: anything,
+              parameters: [
+                {
+                  parameter_key: "DBPassword",
+                  parameter_value: "XXX"
+                }
+              ])
       action
     end
 
@@ -91,7 +104,7 @@ RSpec.describe AwsAsCode::Task::Create do
     end
 
     it "uses stack and template name to generate the object key" do
-      expect(bucket).to receive(:object).with("test-stack/env.json")
+      expect(bucket).to receive(:object).with("test-stack/VERSION/env.json")
       subject
     end
   end
