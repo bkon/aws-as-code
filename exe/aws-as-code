@@ -35,12 +35,12 @@ class AwsAsCodeCli < Thor
 
   desc "do-create", "create a new stack"
   def do_create
-    AwsAsCode::Task::Create.new(config).execute
+    exit AwsAsCode::Task::Create.new(config).execute
   end
 
   desc "do-update", "update existing stack"
   def do_update
-    AwsAsCode::Task::Update.new(config).execute
+    exit AwsAsCode::Task::Update.new(config).execute
   end
 
   desc "create", "create a new stack"

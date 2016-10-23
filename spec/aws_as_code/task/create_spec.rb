@@ -26,8 +26,13 @@ RSpec.describe AwsAsCode::Task::Create do
     double "Template", public_url: nil
   end
 
+  let(:status) { "CREATE_SUCCESS" }
+
   let(:stack) do
-    double "Stack"
+    obj = double "Stack",
+                 stack_status: status
+    allow(obj).to receive(:reload).and_return obj
+    obj
   end
 
   describe "#execute" do
@@ -57,6 +62,18 @@ RSpec.describe AwsAsCode::Task::Create do
     it "waits for stack to become available" do
       expect(semaphore).to receive :wait_for_stack_availability
       action
+    end
+
+    it "returns 0 status (shell success)" do
+      expect(action).to eq 0
+    end
+
+    context "when operation fails" do
+      let(:status) { "CREATE_FAILED" }
+
+      it "returns 1 status (shell failure)" do
+        expect(action).to eq 1
+      end
     end
   end
 

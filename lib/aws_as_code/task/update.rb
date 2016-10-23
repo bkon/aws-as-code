@@ -11,6 +11,7 @@ module AwsAsCode
                           template_url: template_object.public_url,
                           parameters: parameters
         end
+        exit_code_for_stack_state stack.reload
       end
 
       private

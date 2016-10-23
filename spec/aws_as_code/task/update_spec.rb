@@ -26,16 +26,21 @@ RSpec.describe AwsAsCode::Task::Update do
     double "Template", public_url: nil
   end
 
+  let(:status) { "UPDATE_SUCCESS" }
+
   let(:stack) do
-    double "Stack",
-           parameters: [
-             OpenStruct.new(parameter_key: "removed",
-                            parameter_value: "1"),
-             OpenStruct.new(parameter_key: "updated",
-                            parameter_value: "2"),
-             OpenStruct.new(parameter_key: "ignored",
-                            parameter_value: "3")
-           ]
+    obj = double "Stack",
+                 parameters: [
+                   OpenStruct.new(parameter_key: "removed",
+                                  parameter_value: "1"),
+                   OpenStruct.new(parameter_key: "updated",
+                                  parameter_value: "2"),
+                   OpenStruct.new(parameter_key: "ignored",
+                                  parameter_value: "3")
+                 ],
+                 stack_status: status
+    allow(obj).to receive(:reload).and_return obj
+    obj
   end
 
   describe "#execute" do
@@ -72,6 +77,18 @@ RSpec.describe AwsAsCode::Task::Update do
         .to receive(:update_stack)
         .with(hash_including parameters: match_array(expected_parameters))
       action
+    end
+
+    it "returns 0 status (shell success)" do
+      expect(action).to eq 0
+    end
+
+    context "when operation fails" do
+      let(:status) { "UPDATE_ROLLBACK_COMPLETE" }
+
+      it "returns 1 status (shell failure)" do
+        expect(action).to eq 1
+      end
     end
   end
 end

@@ -115,7 +115,7 @@ RSpec.describe AwsAsCode::Task::Upload do
         File.join(json_dir, "1.json"),
         File.join(json_dir, "3.json")
       ]
-      expect(action).to eq expected
+      expect(action).to match_array expected
     end
   end
 end

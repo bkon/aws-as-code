@@ -10,6 +10,7 @@ module AwsAsCode
                         template_url: template_object.public_url,
                         parameters: parameters
         semaphore.wait_for_stack_availability stack
+        exit_code_for_stack_state stack.reload
       end
 
       private
