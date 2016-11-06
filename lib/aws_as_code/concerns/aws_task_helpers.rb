@@ -7,6 +7,14 @@ module AwsAsCode
         StackStateSemaphore.new logger: logger
       end
 
+      def exit_code_for_stack_state(stack)
+        state_indicates_failure?(stack) ? 1 : 0
+      end
+
+      def state_indicates_failure?(stack)
+        stack.stack_status =~ /ROLLBACK/ || stack.stack_status =~ /FAILED/
+      end
+
       def cloud_formation
         @cloud_formation ||= Aws::CloudFormation::Client.new
       end
