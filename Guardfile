@@ -69,11 +69,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
-guard :rubocop do
-  watch(%r{.+\.rb$})
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
-end
-
 cucumber_options = {
   # Below are examples overriding defaults
 
