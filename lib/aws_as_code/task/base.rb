@@ -1,3 +1,5 @@
+require "logger"
+
 # frozen_string_literal: true
 module AwsAsCode
   module Task
@@ -9,7 +11,7 @@ module AwsAsCode
       end
 
       def logger
-        @logger = Logger.new STDOUT
+        @logger = ::Logger.new STDOUT
       end
     end
   end
