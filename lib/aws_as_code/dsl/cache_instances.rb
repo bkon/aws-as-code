@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 CACHE_INSTANCE_CLASSES = %w(
   cache.t2.micro
   cache.t2.small

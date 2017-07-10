@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require "cfndsl"
 require "yaml"
 require "fileutils"
 
-# frozen_string_literal: true
 module AwsAsCode
   module Task
     # Compiles all input templates and puts
