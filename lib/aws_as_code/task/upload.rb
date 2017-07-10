@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "aws-sdk"
 require "pathname"
 
-# frozen_string_literal: true
 module AwsAsCode
   module Task
     class Upload < Base

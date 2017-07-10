@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 EC2_INSTANCE_CLASSES = %w(
   c3.2xlarge
   c3.4xlarge

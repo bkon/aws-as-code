@@ -7,10 +7,10 @@ require "thor"
 require "cfndsl"
 require "ostruct"
 
-DEFAULT_RUBY_DIR = "cfn".freeze
-DEFAULT_JSON_DIR = "cfn-compiled".freeze
-DEFAULT_STACK = "master".freeze
-DEFAULT_TEMPLATE = "environment".freeze
+DEFAULT_RUBY_DIR = "cfn"
+DEFAULT_JSON_DIR = "cfn-compiled"
+DEFAULT_STACK = "master"
+DEFAULT_TEMPLATE = "environment"
 
 # Main CLI application for aws-as-code gem
 class AwsAsCodeCli < Thor

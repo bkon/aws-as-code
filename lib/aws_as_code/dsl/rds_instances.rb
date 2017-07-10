@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RDS_INSTANCE_CLASSES = %w(
   db.m3.medium
   db.m3.large
